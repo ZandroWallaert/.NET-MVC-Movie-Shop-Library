@@ -15,8 +15,11 @@ namespace howest_movie_lib.Library.Models
         {
         }
 
+        public virtual DbSet<GenreMovie> GenreMovie { get; set; }
+        public virtual DbSet<Genres> Genres { get; set; }
         public virtual DbSet<MovieRole> MovieRole { get; set; }
         public virtual DbSet<Movies> Movies { get; set; }
+        public virtual DbSet<Persons> Persons { get; set; }
         public virtual DbSet<ShopCustomer> ShopCustomer { get; set; }
         public virtual DbSet<ShopMoviePrice> ShopMoviePrice { get; set; }
         public virtual DbSet<ShopOrder> ShopOrder { get; set; }
@@ -33,6 +36,33 @@ namespace howest_movie_lib.Library.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<GenreMovie>(entity =>
+            {
+                entity.HasKey(e => new { e.MovieId, e.GenreId })
+                    .HasName("PK_genre_movie_raw");
+
+                entity.ToTable("genre_movie");
+
+                entity.Property(e => e.MovieId).HasColumnName("movie_id");
+
+                entity.Property(e => e.GenreId).HasColumnName("genre_id");
+            });
+
+            modelBuilder.Entity<Genres>(entity =>
+            {
+                entity.ToTable("genres");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.ImdbName)
+                    .HasColumnName("imdb_name")
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.Name)
+                    .HasColumnName("name")
+                    .HasMaxLength(50);
+            });
+
             modelBuilder.Entity<MovieRole>(entity =>
             {
                 entity.HasKey(e => new { e.MovieId, e.PersonId, e.Role });
@@ -90,6 +120,27 @@ namespace howest_movie_lib.Library.Models
                 entity.Property(e => e.Top250Rank).HasColumnName("top_250_rank");
 
                 entity.Property(e => e.Year).HasColumnName("year");
+            });
+
+            modelBuilder.Entity<Persons>(entity =>
+            {
+                entity.ToTable("persons");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Biography)
+                    .IsRequired()
+                    .HasColumnName("biography");
+
+                entity.Property(e => e.ImdbId)
+                    .IsRequired()
+                    .HasColumnName("imdb_id")
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasColumnName("name")
+                    .HasMaxLength(50);
             });
 
             modelBuilder.Entity<ShopCustomer>(entity =>
