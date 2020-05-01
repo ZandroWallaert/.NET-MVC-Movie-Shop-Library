@@ -1,0 +1,10 @@
+D:\Desktop\Howest Movie Shop\howest-movie-lib\bin\Debug\netcoreapp3.1\howest-movie-lib.deps.json
+D:\Desktop\Howest Movie Shop\howest-movie-lib\bin\Debug\netcoreapp3.1\howest-movie-lib.runtimeconfig.json
+D:\Desktop\Howest Movie Shop\howest-movie-lib\bin\Debug\netcoreapp3.1\howest-movie-lib.runtimeconfig.dev.json
+D:\Desktop\Howest Movie Shop\howest-movie-lib\bin\Debug\netcoreapp3.1\howest-movie-lib.dll
+D:\Desktop\Howest Movie Shop\howest-movie-lib\bin\Debug\netcoreapp3.1\howest-movie-lib.pdb
+D:\Desktop\Howest Movie Shop\howest-movie-lib\obj\Debug\netcoreapp3.1\howest-movie-lib.csprojAssemblyReference.cache
+D:\Desktop\Howest Movie Shop\howest-movie-lib\obj\Debug\netcoreapp3.1\howest-movie-lib.AssemblyInfoInputs.cache
+D:\Desktop\Howest Movie Shop\howest-movie-lib\obj\Debug\netcoreapp3.1\howest-movie-lib.AssemblyInfo.cs
+D:\Desktop\Howest Movie Shop\howest-movie-lib\obj\Debug\netcoreapp3.1\howest-movie-lib.dll
+D:\Desktop\Howest Movie Shop\howest-movie-lib\obj\Debug\netcoreapp3.1\howest-movie-lib.pdb
