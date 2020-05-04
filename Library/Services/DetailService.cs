@@ -8,26 +8,42 @@ namespace howest_movie_lib.Library.Services
     public class DetailService
     {
         db_moviesContext context = new db_moviesContext();
-
+        private GenreService genreService = new GenreService();
+        private ActorService actorService = new ActorService();
+        List<Genres> genres = new List<Genres>();
         public IEnumerable<Movies> GetMovies()
         {
             return context.Movies;
         }
 
-        public int GetGenreId(long movieId)
+        public List<Persons> GetActors(long movieId)
         {
-            return context.GenreMovie.Where(s => s.MovieId == movieId).Select(s => s.GenreId).First();
+            IEnumerable<MovieRole> movieRoles = actorService.GetMovieRoles(movieId);
+
+            List<Persons> actors = new List<Persons>();
+            foreach (MovieRole role in movieRoles)
+            {
+                Persons actor = context.Persons.First(actor => actor.Id == role.PersonId);
+                if (actor != null)
+                {
+                    actors.Add(actor);
+                }
+            }
+            return actors;
         }
 
-        public String GetGenreName(int genreId)
+        public List<Genres> GetGenres(long movieId)
         {
-            return context.Genres.Where(s => s.Id == genreId).Select(s => s.Name).First();
+            IEnumerable<GenreMovie> genreMovies = genreService.GetGenre(movieId);
+            foreach (GenreMovie genreMovie in genreMovies)
+            {
+                Genres genre = context.Genres.First(movieGenre => movieGenre.Id == genreMovie.GenreId);
+                if (genre != null)
+                {
+                    genres.Add(genre);
+                }
+            }
+            return genres;
         }
-
-        public IEnumerable<Persons> GetActorName(String movieName)
-        {
-            return context.Persons.Where(s => s.Biography.Contains(movieName));
-        }
-
     }
 }
