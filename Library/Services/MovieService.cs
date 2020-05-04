@@ -14,15 +14,11 @@ namespace howest_movie_lib.Library.Services
             return context.Movies;
         }
 
-        public IEnumerable<Movies> AllMoviesByTitle()
+        public Movies GetRandomMovie()
         {
-            return context.Movies.OrderBy(movie => movie.Title);
-        }
-
-        public Movies GetRandomMovie() {
             Random r = new Random();
             int rInt = r.Next(1, 250);
             return (from t in AllMovies() where t.Id.Equals(rInt) select t).First();
         }
     }
-    }
+}
